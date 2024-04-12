@@ -69,6 +69,7 @@ async function displayPopularShow() {
     document.querySelector('#popular-shows').appendChild(div);
   });
 }
+// Display Movie Details
 
 // Fetch data from TMDB API
 async function fetchAPIData(endpoint) {
