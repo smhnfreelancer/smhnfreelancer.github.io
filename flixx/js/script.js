@@ -305,6 +305,26 @@ async function fetchAPIData(endpoint) {
   return data;
 }
 
+// Make Request To Search
+async function searchAPIData() {
+  // Register your key at https://www.themoviedb.org/settings/api and enter here
+  // Only use this for development or very small projects. You should store your key and make requests from a server
+  const API_KEY = global.api.apiKey;
+  const API_URL = global.api.apiUrl;
+
+  showSpinner();
+
+  const response = await fetch(
+    `${API_URL}search/${global.search.type}?api_key=${API_KEY}&language=en-US&query=${global.search.term}`
+  );
+
+  const data = await response.json();
+
+  hideSpinner();
+
+  return data;
+}
+
 function showSpinner() {
   document.querySelector('.spinner').classList.add('show');
 }
