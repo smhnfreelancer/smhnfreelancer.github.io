@@ -153,7 +153,7 @@ async function displayShowDetails() {
                   }
                   </div>
                   <div>
-                    <h2>${show.title}</h2>
+                    <h2>${show.name}</h2>
                     <p>
                       <i class="fas fa-star text-primary"></i>
                       ${show.vote_average.toFixed(1)} / 10
