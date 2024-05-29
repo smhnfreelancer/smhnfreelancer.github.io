@@ -127,17 +127,17 @@ class CalorieTracker {
     workoutEl.setAttribute('data-id', workout.id);
     workoutEl.innerHTML = `
     <div class="card-body">
-    <div class="d-flex align-items-center justify-content-between">
-    <h4 class="mx-1">${workout.name}</h4>
-    <div
-        class="fs-1 bg-primary text-white text-center rounded-2 px-2 px-sm-5"
-      >
-    ${workout.calories}
-    </div>
-    <button class="delete btn btn-danger btn-sm mx-2">
-    <i class="fa-solid fa-xmark"></i>
-    </button>
-    </div>
+      <div class="d-flex align-items-center justify-content-between">
+        <h4 class="mx-1">${workout.name}</h4>
+        <div
+          class="fs-1 bg-primary text-white text-center rounded-2 px-2 px-sm-5"
+        >
+        ${workout.calories}
+        </div>
+      <button class="delete btn btn-danger btn-sm mx-2">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      </div>
     </div>`;
 
     workoutsEl.appendChild(workoutEl);
