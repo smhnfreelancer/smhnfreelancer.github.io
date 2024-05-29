@@ -209,7 +209,11 @@ class App {
 
     document
       .getElementById('filter-meal')
-      .addEventListener('keyup', this._filterItems.bind(this, 'meals'));
+      .addEventListener('keyup', this._filterItems.bind(this, 'meal'));
+
+    // document
+    //   .getElementById('filter-workout')
+    //   .addEventListener('keyup', this._filterItems.bind(this, 'workout'));
   }
 
   _newItem(type, e) {
@@ -257,6 +261,10 @@ class App {
         item.remove();
       }
     }
+  }
+  _filterItems(type, e) {
+    const text = e.target.value.toLowerCase();
+    console.log(text);
   }
 }
 
