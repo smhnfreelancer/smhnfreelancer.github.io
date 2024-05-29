@@ -208,12 +208,12 @@ class App {
       .addEventListener('click', this._removeItem.bind(this, 'workout'));
 
     document
-      .getElementById('filter-meal')
+      .getElementById('filter-meals')
       .addEventListener('keyup', this._filterItems.bind(this, 'meal'));
 
-    // document
-    //   .getElementById('filter-workout')
-    //   .addEventListener('keyup', this._filterItems.bind(this, 'workout'));
+    document
+      .getElementById('filter-workouts')
+      .addEventListener('keyup', this._filterItems.bind(this, 'workout'));
   }
 
   _newItem(type, e) {
