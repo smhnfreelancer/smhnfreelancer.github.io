@@ -206,6 +206,10 @@ class App {
     document
       .getElementById('workout-items')
       .addEventListener('click', this._removeItem.bind(this, 'workout'));
+
+    document
+      .getElementById('filter-meal')
+      .addEventListener('keyup', this._filterItems.bind(this, 'meals'));
   }
 
   _newItem(type, e) {
