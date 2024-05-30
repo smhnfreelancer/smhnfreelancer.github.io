@@ -49,6 +49,20 @@ class CalorieTracker {
     }
   }
 
+  reset() {
+    this._totalCalories = 0;
+    this._meals = [];
+    this._workouts = [];
+    this._calorieLimit = 2000;
+    this._render();
+  }
+
+  setLimit(calorieLimit) {
+    this._calorieLimit = calorieLimit;
+    this._displayCaloriesLimit();
+    this._render();
+  }
+
   // Private Methods //
   _displayCaloriesTotal() {
     const totalCaloriesEl = document.getElementById('calories-total');
@@ -166,6 +180,7 @@ class CalorieTracker {
 
   _render() {
     this._displayCaloriesTotal();
+    this._displayCaloriesLimit();
     this._displayCaloriesConsumed();
     this._displayCaloriesBurned();
     this._displayCaloriesRemaining();
@@ -185,6 +200,18 @@ class Workout {
     this.id = Math.random().toString(16).slice(2);
     this.name = name;
     this.calories = calories;
+  }
+}
+
+class Storage {
+  static getCalorieLimit(defaultLimit = 2000) {
+    let calorieLimit;
+    if (localStorage.getItem('calorieLimit') === null) {
+      calorieLimit = defaultLimit;
+    } else {
+      calorieLimit = +localStorage.getItem('calorieLimit');
+    }
+    return calorieLimit;
   }
 }
 
@@ -215,6 +242,14 @@ class App {
     document
       .getElementById('filter-workouts')
       .addEventListener('keyup', this._filterItems.bind(this, 'workout'));
+
+    document
+      .getElementById('reset')
+      .addEventListener('click', this._reset.bind(this));
+
+    document
+      .getElementById('limit-form')
+      .addEventListener('submit', this._setLimit.bind(this));
   }
 
   _newItem(type, e) {
@@ -274,6 +309,32 @@ class App {
         item.style.display = 'none';
       }
     });
+  }
+
+  _reset() {
+    this._tracker.reset();
+    document.getElementById('meal-items').innerHTML = '';
+    document.getElementById('workout-items').innerHTML = '';
+    document.getElementById('filter-meals').value = '';
+    document.getElementById('filter-workouts').value = '';
+  }
+
+  _setLimit(e) {
+    e.preventDefault();
+
+    const limit = document.getElementById('limit');
+
+    if (limit.value === '') {
+      alert('Please add a limit');
+      return;
+    }
+
+    this._tracker.setLimit(+limit.value);
+    limit.value = '';
+
+    const modalEl = document.getElementById('limit-modal');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
   }
 }
 
