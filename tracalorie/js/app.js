@@ -25,6 +25,7 @@ class CalorieTracker {
   addWorkout(workout) {
     this._workouts.push(workout);
     this._totalCalories -= workout.calories;
+    this._displayNewWorkout(workout);
     this._render();
   }
 
@@ -264,7 +265,15 @@ class App {
   }
   _filterItems(type, e) {
     const text = e.target.value.toLowerCase();
-    console.log(text);
+    document.querySelectorAll(`#${type}-items .card`).forEach((item) => {
+      const name = item.firstElementChild.firstElementChild.textContent;
+
+      if (name.toLowerCase().indexOf(text) !== -1) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
   }
 }
 
