@@ -69,6 +69,10 @@ class CalorieTracker {
     this._render();
   }
 
+  loadItems() {
+    this._meals.forEach((meal) => this._displayNewMeal(meal));
+  }
+
   // Private Methods //
   _displayCaloriesTotal() {
     const totalCaloriesEl = document.getElementById('calories-total');
@@ -257,7 +261,10 @@ class Storage {
 class App {
   constructor() {
     this._tracker = new CalorieTracker();
-
+    this._loadEventListeners();
+    this._tracker.loadItems();
+  }
+  _loadEventListeners() {
     document
       .getElementById('meal-form')
       .addEventListener('submit', this._newItem.bind(this, 'meal'));
@@ -290,7 +297,6 @@ class App {
       .getElementById('limit-form')
       .addEventListener('submit', this._setLimit.bind(this));
   }
-
   _newItem(type, e) {
     e.preventDefault();
 
